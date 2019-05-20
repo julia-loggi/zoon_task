@@ -10,6 +10,7 @@ body {
   color: $c_main;
   font-family: $ff_main, 'sans-serif';
   font-weight: $fw_regular;
+  line-height: $lh_normal;
 
   @media (min-width: $sm) {
     width: 768px;

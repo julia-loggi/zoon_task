@@ -16,9 +16,7 @@ const Button = props => {
   );
 };
 
-Button.default = {
-  value: 0,
-};
+Button.default = {};
 
 Button.propTypes = {
   value: PropTypes.string.isRequired,

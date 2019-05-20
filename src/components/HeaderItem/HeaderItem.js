@@ -20,7 +20,7 @@ class HeaderItem extends Component {
 }
 
 HeaderItem.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
