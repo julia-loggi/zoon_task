@@ -1,0 +1,44 @@
+@import '../../styles/vars.scss';
+
+.infoItem {
+  position: relative;
+  height: 130px;
+  padding: 15px 30px;
+
+  border-radius: $borderRadius;
+  border: solid 1px $c_muted_sub;
+  background-color: $c_contrast;
+  overflow: hidden;
+  transition: background-color, transform $easing $duration;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 4px;
+    height: 100%;
+    background-color: $c_primary_sub;
+  }
+
+  &:hover {
+    transform: scale(1.01);
+    background-color: $c_muted_sub;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &_title {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: $fs_medium;
+    font-weight: $fw_bold;
+    color: $c_main_sub;
+  }
+}
