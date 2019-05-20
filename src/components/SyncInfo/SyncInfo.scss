@@ -1,0 +1,30 @@
+@import '../../styles/vars.scss';
+
+.syncInfo {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: $c_muted;
+
+  font-size: $fs_normal;
+  font-weight: $fw_regular;
+
+  &_item {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 3px;
+      height: 3px;
+      background-color: $c_muted;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
