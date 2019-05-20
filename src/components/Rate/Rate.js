@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../Icon/Icon';
 
+import Icon from '../Icon/Icon';
 import './Rate.css';
 
-const Rate = props => {
-  return (
-    <div className="rate">
-      <Icon className="rate_icon" name="star" color="#ffaa30" size={16} />
-      <span className="rate_text">{props.value} из 5</span>
-    </div>
-  );
-};
+class Rate extends Component {
+  renderValue = isNull => {
+    if (isNull) {
+      return <span className="rate_text rate_text--empty">Портал без рейтинга</span>;
+    }
+    return <span className="rate_text">{this.props.value} из 5</span>;
+  };
+
+  renderFeedback = () => {
+    const { total, notAnswered } = this.props.feedback;
+    return (
+      <ul className="rate_feedback">
+        <li className="rate_feedbackItem">{total} отзывов, </li>
+        <li className="rate_feedbackItem">{notAnswered} неотвеченных</li>
+      </ul>
+    );
+  };
+
+  render() {
+    const isNull = this.props.value === null;
+
+    return (
+      <div className="rate">
+        <Icon
+          className="rate_icon"
+          name="star"
+          color={`${isNull ? '#bbbcc4' : '#ffaa30'}`}
+          size={16}
+        />
+        {this.renderValue(isNull)}
+        {this.renderFeedback()}
+      </div>
+    );
+  }
+}
 
 Rate.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOf(PropTypes.number, null).isRequired,
+  feedback: PropTypes.shape({
+    total: PropTypes.number,
+    notAnswered: PropTypes.number,
+  }),
 };
 export default Rate;
