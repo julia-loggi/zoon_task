@@ -1,0 +1,10 @@
+@import '../../styles/vars.scss';
+
+.icon {
+  display: inline-block;
+  padding: 0;
+
+  svg {
+    display: block;
+  }
+}
