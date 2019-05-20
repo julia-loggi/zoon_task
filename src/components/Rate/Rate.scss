@@ -1,0 +1,16 @@
+@import '../../styles/vars.scss';
+
+.rate {
+  display: inline-block;
+
+  &_text {
+    color: $c_secondary;
+    font-size: $fs_normal;
+    font-weight: $fw_regular;
+  }
+
+  &_icon {
+    margin-right: 5px;
+    padding-top: 2px;
+  }
+}
