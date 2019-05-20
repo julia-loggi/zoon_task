@@ -1,0 +1,30 @@
+@import '../../styles/vars.scss';
+
+.stateButton {
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: $c_contrast;
+  color: $c_main;
+
+  border-radius: $borderRadius;
+  border: solid 1px #e6ecf2;
+  font-size: $fs_normal;
+  font-weight: $fw_regular;
+  user-select: none;
+  text-decoration: none;
+
+  &--checked {
+    background-color: $c_primary_sub;
+    color: $c_contrast;
+    border: unset;
+  }
+
+  &_content {
+    vertical-align: middle;
+  }
+
+  &_icon {
+    margin-right: 4px;
+  }
+}

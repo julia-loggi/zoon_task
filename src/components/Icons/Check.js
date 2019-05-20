@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Check = props => (
-  <svg width="9" height="10" viewBox="0 0 9 10">
+  <svg viewBox="0 0 9 10">
     <path
       fill="none"
       fillRule="evenodd"
