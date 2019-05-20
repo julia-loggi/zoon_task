@@ -1,0 +1,55 @@
+@import '../../styles/vars.scss';
+
+.headerItem {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 65px;
+  // width: 100%;
+  padding: 10px;
+
+  color: $c_contrast;
+  background-color: $c_primary;
+  border-radius: $borderRadius;
+
+  &_value {
+    text-align: center;
+    font-size: $fs_medium;
+    font-weight: $fw_bold;
+  }
+
+  &_text {
+    font-size: $fs_small;
+    font-weight: $fw_regular;
+  }
+
+  &_icon {
+    display: none;
+  }
+
+  @media (min-width: $sm) {
+    justify-content: space-between;
+    width: 260px;
+    height: 85px;
+
+    padding: 20px 15px 20px 25px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($c_primary, 7);
+    }
+
+    &_value {
+      text-align: left;
+      font-size: $fs_large;
+    }
+
+    &_text {
+      font-size: $fs_normal;
+    }
+
+    &_icon {
+      display: block;
+    }
+  }
+}

@@ -2,12 +2,24 @@
 
 body {
   min-width: 320px;
+  margin: 0 auto;
+  padding: 0 30px;
 
   overflow: hidden;
   background-color: $c_contrast;
   color: $c_main;
   font-family: $ff_main, 'sans-serif';
   font-weight: $fw_regular;
+
+  @media (min-width: $sm) {
+    width: 768px;
+    padding: 0 50px;
+  }
+
+  @media (min-width: $md) {
+    width: 1150px;
+    padding: 0 50px;
+  }
 }
 
 img {
@@ -17,4 +29,9 @@ img {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2 {
+  margin: 0;
 }

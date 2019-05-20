@@ -3,13 +3,16 @@ $c_main: #222222;
 $c_contrast: #ffffff;
 $c_muted: #bbbcc4;
 
-$c_primary: #5a39a7;
+$c_primary: #4a0594;
+$c_primary_muted: #5a39a7;
+
 $c_secondary: #ffaa30;
 
 // FONT FAMILY
 $ff_main: 'Roboto';
 
 // FONT SIZES
+$fs_small: 10px;
 $fs_normal: 13px;
 $fs_medium: 16px;
 $fs_large: 25px;
@@ -23,11 +26,8 @@ $easing: ease;
 $duration: 0.2s;
 
 // BREAKPOINTS
-$misc: 320px;
-$xs: 400px;
 $sm: 768px;
-$md: 1024px;
-$lg: 1200px;
+$md: 1150px;
 
 // OTHER
 $borderRadius: 4px;
