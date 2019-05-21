@@ -5,15 +5,20 @@ import Icon from '../Icon/Icon';
 import './StateButton.css';
 
 const StateButton = props => {
-  const { text, isChecked, isLoading } = props;
-  const iconName = isLoading ? 'loading' : 'check';
-  const iconSize = isLoading ? 12 : 10;
-  const iconColor = isChecked ? '#ffffff' : '#222222';
+  const { text, state } = props;
+  const iconName = state === 'loading' ? 'loading' : 'check';
+  const iconSize = state === 'loading' ? 12 : 10;
+  const iconColor = state === 'done' ? '#ffffff' : '#222222';
 
   return (
-    <div className={`stateButton ${isChecked ? 'stateButton--checked' : ''}`}>
+    <div className={`stateButton ${state === 'done' ? 'stateButton--checked' : ''}`}>
       <span className="stateButton_content">
-        <Icon className="stateButton_icon" name={iconName} size={iconSize} color={iconColor} />
+        <Icon
+          className="stateButton_icon"
+          name={iconName}
+          size={iconSize}
+          color={iconColor}
+        />
         {text}
       </span>
     </div>
@@ -21,13 +26,12 @@ const StateButton = props => {
 };
 
 StateButton.default = {
-  isChecked: false,
+  state: 'loading',
 };
 
 StateButton.propTypes = {
   text: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool,
-  isLoading: PropTypes.bool,
+  state: PropTypes.oneOf(['done', 'loading']).isRequired,
 };
 
 export default StateButton;
