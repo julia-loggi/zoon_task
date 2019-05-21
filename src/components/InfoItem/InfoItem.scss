@@ -2,6 +2,8 @@
 
 .infoItem {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 130px;
   padding: 15px 30px;
 
@@ -22,9 +24,14 @@
     background-color: $c_primary_sub;
   }
 
-  &:hover {
-    transform: scale(1.01);
-    background-color: $c_muted_sub;
+  &--disabled {
+    &::before {
+      background-color: $c_primary_muted;
+    }
+
+    > .infoItem_title {
+      color: $c_primary_muted;
+    }
   }
 
   &_header {
@@ -40,5 +47,27 @@
     font-size: $fs_medium;
     font-weight: $fw_bold;
     color: $c_main_sub;
+  }
+
+  &_check {
+    margin-left: 10px;
+  }
+
+  &_footer {
+    margin-top: auto;
+  }
+
+  &_extra {
+    position: absolute;
+    right: 15px;
+    top: 17px;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  &_disabledText {
+    font-size: $fs_medium;
+    font-weight: $fw_regular;
+    color: $c_muted;
   }
 }
