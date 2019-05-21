@@ -3,9 +3,7 @@
 body {
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 30px;
 
-  overflow: hidden;
   background-color: $c_contrast;
   color: $c_main;
   font-family: $ff_main, 'sans-serif';
@@ -31,14 +29,9 @@ h3 {
 .page {
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 20px;
   @media (min-width: $sm) {
-    width: 768px;
-    padding: 0 50px;
-  }
-
-  @media (min-width: $md) {
     width: 1184px;
-    padding: 0 64px;
+    padding: 28px 64px;
   }
 }
