@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Check = props => (
   <svg viewBox="0 0 9 10">
     <path
+      className="icon_fill"
       fill="none"
       fillRule="evenodd"
       stroke={props.color}
