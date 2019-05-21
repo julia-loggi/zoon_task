@@ -1,0 +1,49 @@
+@import '../../styles/vars.scss';
+
+.action {
+  padding: 5px;
+  cursor: pointer;
+  &:hover,
+  &--active {
+    .icon_fill {
+      fill: $c_primary_sub;
+    }
+  }
+
+  &_info {
+    position: absolute;
+    right: -25px;
+    top: 35px;
+
+    display: none;
+    width: 117px;
+    height: 50px;
+    padding: 15px 0;
+    border: solid 1px $c_muted;
+    border-radius: $borderRadius;
+    background-color: $c_contrast;
+    text-align: center;
+    color: $c_primary;
+    font-size: $fs_medium;
+    font-weight: $fw_regular;
+    cursor: pointer;
+
+    &--visible {
+      display: block;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: 26px;
+      display: block;
+      width: 17px;
+      height: 17px;
+      transform: rotate(45deg);
+      background-color: $c_contrast;
+      border-left: solid 1px #bbbcc4;
+      border-top: solid 1px #bbbcc4;
+    }
+  }
+}
