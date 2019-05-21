@@ -41,7 +41,7 @@ class Rate extends Component {
 }
 
 Rate.propTypes = {
-  value: PropTypes.oneOf(PropTypes.number, null).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]).isRequired,
   feedback: PropTypes.shape({
     total: PropTypes.number,
     notAnswered: PropTypes.number,
