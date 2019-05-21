@@ -5,3 +5,4 @@ export { default as loading } from './Loading';
 export { default as check } from './Check';
 export { default as star } from './Star';
 export { default as bell } from './Bell';
+export { default as dots } from './Dots';
