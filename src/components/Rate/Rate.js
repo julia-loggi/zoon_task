@@ -34,14 +34,14 @@ class Rate extends Component {
           size={16}
         />
         {this.renderValue(isNull)}
-        {this.renderFeedback()}
+        {!isNull && this.renderFeedback()}
       </div>
     );
   }
 }
 
 Rate.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]).isRequired,
+  value: PropTypes.string,
   feedback: PropTypes.shape({
     total: PropTypes.number,
     notAnswered: PropTypes.number,

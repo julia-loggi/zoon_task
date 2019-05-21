@@ -5,60 +5,88 @@ import SyncInfo from '../../components/SyncInfo/SyncInfo';
 import Rate from '../../components/Rate/Rate';
 import Button from '../../components/Button/Button';
 import Icon from '../../components/Icon/Icon';
-
-import './InfoItem.css';
 import StateButton from '../StateButton/StateButton';
 import CheckItem from '../CheckItem/CheckItem';
+import ActionButton from '../ActionButton/ActionButton';
+import './InfoItem.css';
 
 class InfoItem extends Component {
+  renderSyncInfo = () => {
+    const { syncInfo } = this.props;
+    if (!syncInfo) {
+      return null;
+    }
+    return (
+      <SyncInfo
+        total={syncInfo.total}
+        done={syncInfo.done}
+        searching={syncInfo.searching}
+      />
+    );
+  };
+
+  renderCheckList = () => {
+    const { checkList } = this.props;
+    if (!checkList || !checkList.length) {
+      return null;
+    }
+
+    return (
+      <div className="infoItem_checkList">
+        {this.props.checkList.map(item => (
+          <CheckItem
+            key={item.text}
+            className="infoItem_check"
+            text={item.text}
+            isDone={item.isDone}
+          />
+        ))}
+      </div>
+    );
+  };
+
   render() {
     const {
       title,
-      syncInfo,
       rate,
-      isActive,
       isActionRequired,
       stateInfo,
-      checkList,
+      updatesAmount,
+      className,
+      state,
     } = this.props;
     const infoItemClass = `infoItem ${
-      !isActive ? 'infoItem--active' : 'infoItem--disabled'
+      state === 'active' ? 'infoItem--active' : 'infoItem--disabled'
     }`;
 
     return (
-      <section className={infoItemClass}>
+      <section className={[infoItemClass, className].join(' ')}>
         <header className="infoItem_header">
           <h3 className="infoItem_title">{title}</h3>
-          <SyncInfo
-            total={syncInfo.total}
-            done={syncInfo.done}
-            searching={syncInfo.searching}
-          />
+          {this.renderSyncInfo()}
         </header>
-        <div>
-          <StateButton text={stateInfo.text} state={stateInfo.state} />
-          {checkList.map(item => (
-            <CheckItem
-              key={item.text}
-              className="infoItem_check"
-              text={item.text}
-              isDone={item.isDone}
-            />
-          ))}
+        <div className="infoItem_main">
+          {stateInfo && <StateButton text={stateInfo.text} state={stateInfo.state} />}
+          {this.renderCheckList()}
         </div>
         <footer className="infoItem_footer">
-          <Rate value={rate.value} feedback={rate.feedback} />
+          {rate && <Rate value={rate.value} feedback={rate.feedback} />}
+          {updatesAmount && (
+            <span className="infoItem_updatesInfo">{updatesAmount} обновления</span>
+          )}
+          {state === 'creating' && (
+            <span className="infoItem_disabledText">Поиск заведений: 15 из 78…</span>
+          )}
           {isActionRequired && (
             <Button value="Требует действий">
-              <Icon name="bell" color="#ffffff" />
+              <Icon name="bell" color="#ffffff" size={12} />
             </Button>
           )}
-          {!isActive && <span className="infoItem_disabledText">Плащадка отключена</span>}
+          {state === 'disabled' && (
+            <span className="infoItem_disabledText">Площадка отключена</span>
+          )}
         </footer>
-
-        <span className="infoItem_extra">
-          <Icon name="dots" color="#e6ecf2" size={12} />
-        </span>
+        <ActionButton className="infoItem_action" state={state} />
       </section>
     );
   }
@@ -80,14 +108,16 @@ InfoItem.propTypes = {
     text: PropTypes.string,
   }),
   rate: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]).isRequired,
+    value: PropTypes.string,
     feedback: PropTypes.shape({
       total: PropTypes.number,
       notAnswered: PropTypes.number,
     }),
   }),
-  isActive: PropTypes.bool.isRequired,
+  updatesAmount: PropTypes.number,
+  state: PropTypes.oneOf(['active' | 'creating' | 'disabled']).isRequired,
   isActionRequired: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default InfoItem;

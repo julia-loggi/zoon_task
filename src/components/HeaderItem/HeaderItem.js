@@ -6,9 +6,9 @@ import './HeaderItem.css';
 
 class HeaderItem extends Component {
   render() {
-    const { value, onClick, text, icon } = this.props;
+    const { value, onClick, text, icon, className } = this.props;
     return (
-      <div className="headerItem" onClick={onClick}>
+      <div className={['headerItem', className].join(' ')} onClick={onClick}>
         <div>
           <h2 className="headerItem_value">{value}</h2>
           <span className="headerItem_text">{text}</span>
@@ -24,6 +24,7 @@ HeaderItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default HeaderItem;
