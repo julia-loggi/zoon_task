@@ -2,13 +2,12 @@
 
 .infoItem {
   position: relative;
-  height: 130px;
-  padding: 15px 30px;
-
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
   border-radius: $borderRadius;
   border: solid 1px $c_muted_sub;
   background-color: $c_contrast;
-  overflow: hidden;
   transition: background-color, transform $easing $duration;
 
   &::before {
@@ -22,15 +21,21 @@
     background-color: $c_primary_sub;
   }
 
-  &:hover {
-    transform: scale(1.01);
-    background-color: $c_muted_sub;
+  &--disabled {
+    &::before {
+      background-color: $c_primary_muted;
+    }
+
+    > .infoItem_title {
+      color: $c_primary_muted;
+    }
   }
 
   &_header {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    align-items: center;
     margin-bottom: 10px;
   }
 
@@ -40,5 +45,58 @@
     font-size: $fs_medium;
     font-weight: $fw_bold;
     color: $c_main_sub;
+  }
+
+  &_checkList {
+    display: inline-block;
+  }
+
+  &_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  &_updatesInfo {
+    font-size: $fs_normal;
+    font-weight: $fw_regular;
+    color: $c_primary_sub;
+  }
+
+  &_action {
+    position: absolute;
+    right: 15px;
+    top: 17px;
+    padding: 5px;
+  }
+
+  &_disabledText {
+    font-size: $fs_normal;
+    font-weight: $fw_regular;
+    color: $c_muted;
+  }
+
+  @media (min-width: $sm) {
+    padding: 15px 30px;
+
+    &_header {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &_checkList {
+      display: inline-block;
+    }
+
+    &_check {
+      margin-left: 10px;
+    }
+
+    &_footer {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }

@@ -5,26 +5,82 @@ import SyncInfo from '../../components/SyncInfo/SyncInfo';
 import Rate from '../../components/Rate/Rate';
 import Button from '../../components/Button/Button';
 import Icon from '../../components/Icon/Icon';
-
+import StateButton from '../StateButton/StateButton';
+import CheckItem from '../CheckItem/CheckItem';
+import ActionButton from '../ActionButton/ActionButton';
 import './InfoItem.css';
 
 class InfoItem extends Component {
-  render() {
-    const { title, syncInfo, rate, isActive, isActionRequired } = this.props;
-    const infoItemClass = `infoItem ${!isActive ? 'infoItem--active' : 'infoItem--disabled'}`;
+  renderSyncInfo = () => {
+    const { syncInfo } = this.props;
+    if (!syncInfo) {
+      return null;
+    }
+    return <SyncInfo total={syncInfo.total} done={syncInfo.done} searching={syncInfo.searching} />;
+  };
+
+  renderCheckList = () => {
+    const { checkList } = this.props;
+    if (!checkList || !checkList.length) {
+      return null;
+    }
 
     return (
-      <section className={infoItemClass}>
-        <div className="infoItem_header">
+      <div className="infoItem_checkList">
+        {this.props.checkList.map(item => (
+          <CheckItem
+            key={item.text}
+            className="infoItem_check"
+            text={item.text}
+            isDone={item.isDone}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  render() {
+    const {
+      title,
+      rate,
+      isActionRequired,
+      stateInfo,
+      updatesAmount,
+      className,
+      state,
+    } = this.props;
+    const infoItemClass = `infoItem ${
+      state === 'active' ? 'infoItem--active' : 'infoItem--disabled'
+    }`;
+
+    return (
+      <section className={[infoItemClass, className].join(' ')}>
+        <header className="infoItem_header">
           <h3 className="infoItem_title">{title}</h3>
-          <SyncInfo total={syncInfo.total} done={syncInfo.done} searching={syncInfo.searching} />
+          {this.renderSyncInfo()}
+        </header>
+        <div className="infoItem_main">
+          {stateInfo && <StateButton text={stateInfo.text} state={stateInfo.state} />}
+          {this.renderCheckList()}
         </div>
-        <Rate value={rate.value} feedback={rate.feedback} />
-        {isActionRequired && (
-          <Button value="Требует действий">
-            <Icon name="bell" color={'#ffffff'} />
-          </Button>
-        )}
+        <footer className="infoItem_footer">
+          {rate && <Rate value={rate.value} feedback={rate.feedback} />}
+          {updatesAmount && (
+            <span className="infoItem_updatesInfo">{updatesAmount} обновления</span>
+          )}
+          {state === 'creating' && (
+            <span className="infoItem_disabledText">Поиск заведений: 15 из 78…</span>
+          )}
+          {isActionRequired && (
+            <Button value="Требует действий">
+              <Icon name="bell" color="#ffffff" size={12} />
+            </Button>
+          )}
+          {state === 'disabled' && (
+            <span className="infoItem_disabledText">Площадка отключена</span>
+          )}
+        </footer>
+        <ActionButton className="infoItem_action" state={state} />
       </section>
     );
   }
@@ -37,15 +93,25 @@ InfoItem.propTypes = {
     done: PropTypes.number,
     searching: PropTypes.number,
   }),
+  stateInfo: PropTypes.shape({
+    text: PropTypes.string,
+    state: PropTypes.string,
+  }),
+  ckeckList: PropTypes.arrayOf({
+    isDone: PropTypes.bool,
+    text: PropTypes.string,
+  }),
   rate: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]).isRequired,
+    value: PropTypes.string,
     feedback: PropTypes.shape({
       total: PropTypes.number,
       notAnswered: PropTypes.number,
     }),
   }),
-  isActive: PropTypes.bool.isRequired,
+  updatesAmount: PropTypes.number,
+  state: PropTypes.oneOf(['active' | 'creating' | 'disabled']).isRequired,
   isActionRequired: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default InfoItem;

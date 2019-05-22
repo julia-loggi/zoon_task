@@ -26,7 +26,7 @@ class Rate extends Component {
     const isNull = this.props.value === null;
 
     return (
-      <div className="rate">
+      <div className={['rate', this.props.className].join(' ')}>
         <Icon
           className="rate_icon"
           name="star"
@@ -34,17 +34,18 @@ class Rate extends Component {
           size={16}
         />
         {this.renderValue(isNull)}
-        {this.renderFeedback()}
+        {!isNull && this.renderFeedback()}
       </div>
     );
   }
 }
 
 Rate.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]).isRequired,
+  value: PropTypes.string,
   feedback: PropTypes.shape({
     total: PropTypes.number,
     notAnswered: PropTypes.number,
   }),
+  className: PropTypes.string,
 };
 export default Rate;

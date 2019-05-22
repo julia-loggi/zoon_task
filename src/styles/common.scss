@@ -3,24 +3,12 @@
 body {
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 30px;
 
-  overflow: hidden;
   background-color: $c_contrast;
   color: $c_main;
   font-family: $ff_main, 'sans-serif';
   font-weight: $fw_regular;
   line-height: $lh_normal;
-
-  @media (min-width: $sm) {
-    width: 768px;
-    padding: 0 50px;
-  }
-
-  @media (min-width: $md) {
-    width: 1150px;
-    padding: 0 50px;
-  }
 }
 
 img {
@@ -36,4 +24,14 @@ h1,
 h2,
 h3 {
   margin: 0;
+}
+
+.page {
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 20px;
+  @media (min-width: $sm) {
+    width: 1184px;
+    padding: 28px 64px;
+  }
 }
