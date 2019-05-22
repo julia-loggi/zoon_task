@@ -17,7 +17,7 @@ class Rate extends Component {
     return (
       <ul className="rate_feedback">
         <li className="rate_feedbackItem">{total} отзывов, </li>
-        <li className="rate_feedbackItem">{notAnswered} неотвеченных</li>
+        {notAnswered && <li className="rate_feedbackItem"> {notAnswered} неотвеченных</li>}
       </ul>
     );
   };

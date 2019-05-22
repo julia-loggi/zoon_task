@@ -45,6 +45,10 @@
     font-size: $fs_medium;
     font-weight: $fw_bold;
     color: $c_main_sub;
+
+    &--disabled {
+      color: $c_muted;
+    }
   }
 
   &_checkList {
@@ -58,6 +62,14 @@
     margin-top: 20px;
   }
 
+  &_footerBtn {
+    margin-top: 10px;
+  }
+
+  &_footerBtnIcon {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
   &_updatesInfo {
     font-size: $fs_normal;
     font-weight: $fw_regular;
@@ -97,6 +109,10 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+    }
+
+    &_footerBtn {
+      margin-top: 0;
     }
   }
 }

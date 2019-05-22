@@ -26,8 +26,8 @@ class ActionButton extends Component {
           color="#e6ecf2"
           size={12}
         />
-        <div class={`action_info ${isVisible ? 'action_info--visible' : ''}`}>
-          {state === 'disabled' ? 'Включить' : 'Выключить'}
+        <div className={`action_info ${isVisible ? 'action_info--visible' : ''}`}>
+          <span className="action_text">{state === 'disabled' ? 'Включить' : 'Выключить'}</span>
         </div>
       </div>
     );

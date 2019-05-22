@@ -19,9 +19,8 @@
   }
   &_feedback {
     position: relative;
-    display: inline-block;
+    display: block;
     margin: 0;
-    margin-left: 10px;
     padding: 0 10px;
     color: $c_main;
 
@@ -43,5 +42,12 @@
     display: inline-block;
     font-size: $fs_normal;
     font-weight: $fw_regular;
+  }
+
+  @media (min-width: $sm) {
+    &_feedback {
+      display: inline-block;
+      margin-left: 10px;
+    }
   }
 }

@@ -3,10 +3,11 @@
 .action {
   padding: 5px;
   cursor: pointer;
-  &:hover,
-  &--active {
-    .icon_fill {
-      fill: $c_primary_sub;
+  &_btn {
+    &--active {
+      .icon_fill {
+        fill: $c_primary_sub;
+      }
     }
   }
 
@@ -23,10 +24,6 @@
     border-radius: $borderRadius;
     background-color: $c_contrast;
     text-align: center;
-    color: $c_primary;
-    font-size: $fs_medium;
-    font-weight: $fw_regular;
-    cursor: pointer;
 
     &--visible {
       display: block;
@@ -45,5 +42,12 @@
       border-left: solid 1px #bbbcc4;
       border-top: solid 1px #bbbcc4;
     }
+  }
+
+  &_text {
+    color: $c_primary;
+    font-size: $fs_medium;
+    font-weight: $fw_regular;
+    cursor: pointer;
   }
 }

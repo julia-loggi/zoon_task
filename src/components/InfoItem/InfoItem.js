@@ -56,7 +56,11 @@ class InfoItem extends Component {
     return (
       <section className={[infoItemClass, className].join(' ')}>
         <header className="infoItem_header">
-          <h3 className="infoItem_title">{title}</h3>
+          <h3
+            className={`infoItem_title ${state === 'disabled' ? 'infoItem_title--disabled' : ''}`}
+          >
+            {title}
+          </h3>
           {this.renderSyncInfo()}
         </header>
         <div className="infoItem_main">
@@ -72,8 +76,8 @@ class InfoItem extends Component {
             <span className="infoItem_disabledText">Поиск заведений: 15 из 78…</span>
           )}
           {isActionRequired && (
-            <Button value="Требует действий">
-              <Icon name="bell" color="#ffffff" size={12} />
+            <Button value="Требует действий" className="infoItem_footerBtn">
+              <Icon className="infoItem_footerBtnIcon" name="bell" color="#ffffff" size={14} />
             </Button>
           )}
           {state === 'disabled' && (
