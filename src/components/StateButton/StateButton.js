@@ -13,12 +13,7 @@ const StateButton = props => {
   return (
     <div className={`stateButton ${state === 'done' ? 'stateButton--checked' : ''}`}>
       <span className="stateButton_content">
-        <Icon
-          className="stateButton_icon"
-          name={iconName}
-          size={iconSize}
-          color={iconColor}
-        />
+        <Icon className="stateButton_icon" name={iconName} size={iconSize} color={iconColor} />
         {text}
       </span>
     </div>
@@ -31,7 +26,7 @@ StateButton.default = {
 
 StateButton.propTypes = {
   text: PropTypes.string.isRequired,
-  state: PropTypes.oneOf(['done', 'loading']).isRequired,
+  state: PropTypes.string.isRequired,
 };
 
 export default StateButton;

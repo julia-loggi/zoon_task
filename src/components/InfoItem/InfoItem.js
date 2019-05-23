@@ -113,7 +113,7 @@ InfoItem.propTypes = {
     }),
   }),
   updatesAmount: PropTypes.number,
-  state: PropTypes.oneOf(['active' | 'creating' | 'disabled']).isRequired,
+  state: PropTypes.string.isRequired,
   isActionRequired: PropTypes.bool,
   className: PropTypes.string,
 };
